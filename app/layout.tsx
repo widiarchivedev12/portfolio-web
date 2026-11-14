@@ -17,35 +17,43 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const SITE_URL = "https://wididiky.vercel.app/";
+const SITE_URL = process.env.SITE_URL ?? "http://localhost:3000";
 const DESCRIPTION =
-  "Full-Stack and Mobile Developer with 4+ years of experience building web, mobile, and WordPress solutions. Skilled in React.js, Next.js, Laravel, Flutter, and headless CMS with Faust.js and Sanity.";
+  "Fullstack Developer from Banyuwangi. Builds web, mobile, and AI apps with React, Next.js, Laravel, Flutter, and RAG pipelines using Vercel AI SDK and pgvector.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Widi Diky – Full-Stack & Mobile Developer",
+    default: "Widi Diky – Fullstack & Mobile Developer",
     template: "%s | Widi Diky",
   },
   description: DESCRIPTION,
   keywords: [
     "Widi Diky",
-    "Full-Stack Developer",
+    "Fullstack Developer",
     "Mobile Developer",
     "WordPress Developer",
-    "React.js",
+    "AI Developer",
+    "React",
     "Next.js",
     "Flutter",
     "Laravel",
     "TypeScript",
     "JavaScript",
+    "Svelte",
+    "Python",
+    "Vercel AI SDK",
+    "RAG",
+    "pgvector",
+    "Groq",
     "Faust.js",
     "Sanity CMS",
     "Headless WordPress",
-    "Web Developer",
-    "Indonesia",
+    "Supabase",
+    "Web Developer Indonesia",
+    "Banyuwangi",
   ],
-  authors: [{ name: "Widi Diky", url: "https://github.com/wididikyy" }],
+  authors: [{ name: "Widi Diky", url: "https://github.com/widiarchivedev12" }],
   creator: "Widi Diky",
   referrer: "origin-when-cross-origin",
   alternates: {
@@ -66,22 +74,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Widi Diky",
-    title: "Widi Diky – Full-Stack & Mobile Developer",
+    title: "Widi Diky – Fullstack & Mobile Developer",
     description: DESCRIPTION,
     images: [
       {
         url: "/bg.webp",
         width: 1200,
-        height: 600,
-        alt: "Widi Diky – Full-Stack & Mobile Developer",
+        height: 630,
+        alt: "Widi Diky – Fullstack & Mobile Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Widi Diky – Full-Stack & Mobile Developer",
+    title: "Widi Diky – Fullstack & Mobile Developer",
     description: DESCRIPTION,
-    creator: "@wididikyy",
     images: ["/bg.webp"],
   },
   manifest: "/site.webmanifest",
@@ -98,29 +105,29 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Widi Diky",
-  url: "https://wididiky.vercel.app/",
-  image: "https://wididiky.vercel.app/bg.webp",
-  jobTitle: ["Full-Stack Developer", "Mobile Developer"],
-  description:
-    "Full-Stack and Mobile Developer with 4+ years of experience building web, mobile, and WordPress solutions. Skilled in React.js, Next.js, Laravel, Flutter, and headless CMS with Faust.js and Sanity.",
+  name: "Widi Diky Kurniawan",
+  url: SITE_URL,
+  image: `${SITE_URL}/bg.webp`,
+  jobTitle: ["Fullstack Developer", "Mobile Developer"],
+  description: DESCRIPTION,
   sameAs: [
-    "https://github.com/wididikyy",
+    "https://github.com/widiarchivedev12",
     "https://github.com/callmeeve",
     "https://www.linkedin.com/in/wididiky/",
   ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "STIKOM PGRI Banyuwangi",
+  },
+  award: "1st Place, Mobile Programming – Indoneris National IT Competition 2023",
   knowsAbout: [
-    "React.js",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Flutter",
-    "React Native",
-    "Laravel",
-    "WordPress",
-    "Faust.js",
-    "Sanity CMS",
-    "Headless CMS",
+    "React", "Next.js", "TypeScript", "JavaScript", "Svelte",
+    "Tailwind CSS", "Flutter", "React Native",
+    "Laravel", "Express.js", "Python", "FastAPI", "Hono",
+    "PostgreSQL", "MySQL", "Supabase", "Firebase", "Prisma",
+    "WordPress", "Faust.js", "Sanity CMS", "Headless CMS",
+    "Vercel AI SDK", "Groq", "Gemini", "pgvector", "RAG",
+    "Git", "Vercel",
   ],
 };
 
