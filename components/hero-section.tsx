@@ -20,40 +20,47 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
 
       <div className="relative z-10 p-5 sm:p-8 md:p-10">
+        <motion.div
+          className="flex items-center gap-2 mb-3 text-sm text-muted-foreground"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease }}
+        >
+          <span className="size-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
+          Banyuwangi, East Java
+        </motion.div>
         <motion.h1
           className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-tight"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
+          transition={{ duration: 0.6, ease, delay: 0.1 }}
         >
           Full-Stack & Mobile Developer.
         </motion.h1>
-        <motion.h2
-          className="mt-3 text-lg text-muted-foreground"
+        <motion.p
+          className="mt-3 text-muted-foreground"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.15 }}
+          transition={{ duration: 0.6, ease, delay: 0.2 }}
         >
-          Check out my{" "}
           <Link
-            href="https://github.com/wididikyy"
+            href="https://github.com/widiarchivedev12"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-foreground hover:dark:text-chart-2 duration-200 transition-colors"
+            className="underline hover:text-foreground transition-colors duration-200"
           >
             GitHub
-          </Link>{" "}
-          and{" "}
+          </Link>
+          {" · "}
           <Link
             href="https://www.linkedin.com/in/wididiky/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-foreground hover:dark:text-chart-2 duration-200 transition-colors"
+            className="underline hover:text-foreground transition-colors duration-200"
           >
             LinkedIn
           </Link>
-          .
-        </motion.h2>
+        </motion.p>
       </div>
     </section>
   );

@@ -1,87 +1,99 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import type { PortfolioItem } from "@/lib/portfolio-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-export type Portfolio = {
-  title: string;
-  description: string;
-  image: string;
-  github?: string;
-  site?: string;
-};
-
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.97 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
   },
 };
 
-export function PortfolioGrid({ items }: { items: Portfolio[] }) {
+export function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
   return (
     <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10"
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.05 }}
     >
       {items.map((item, index) => (
-        <motion.div
-          key={item.title}
+        <motion.article
+          key={item.slug}
           variants={cardVariants}
-          whileHover={{ y: -6, transition: { duration: 0.2 } }}
+          className="group flex flex-col"
         >
-          <Card className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 p-0 h-full">
-            <div className="relative w-full h-64 overflow-hidden">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 hover:scale-105"
-                unoptimized={item.image.endsWith(".svg")}
-                priority={index === 0}
-              />
+          <Link
+            href={`/portfolio/${item.slug}`}
+            className="relative block aspect-video overflow-hidden rounded-xl bg-muted"
+            aria-label={item.title}
+          >
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              unoptimized={item.image.endsWith(".svg")}
+              priority={index === 0}
+            />
+            <span className="absolute top-2.5 left-2.5 font-mono text-[11px] font-semibold leading-none bg-background/85 backdrop-blur-sm text-foreground px-2 py-1 rounded-sm">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </Link>
+
+          <div className="mt-4 flex-1 flex flex-col">
+            <div className="flex items-start justify-between gap-2 mb-1.5">
+              <h4 className="font-semibold leading-snug">{item.title}</h4>
+              <Link
+                href={`/portfolio/${item.slug}`}
+                aria-label={`View ${item.title}`}
+                tabIndex={-1}
+                className="shrink-0 text-muted-foreground hover:text-foreground transition-colors mt-0.5"
+              >
+                <span aria-hidden="true">↗</span>
+              </Link>
             </div>
-            <CardContent className="flex flex-col gap-3 p-5 flex-1">
-              <h4 className="text-xl font-semibold leading-tight">{item.title}</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                {item.description}
-              </p>
-            </CardContent>
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">
+              {item.description}
+            </p>
             {(item.github || item.site) && (
-              <CardFooter className="flex gap-2 px-5 pb-5">
+              <div className="flex gap-4 mt-3 pt-3 border-t border-border text-sm">
                 {item.github && (
-                  <Button asChild variant="outline" size="sm">
-                    <Link href={item.github} target="_blank" rel="noopener noreferrer">
-                      GitHub
-                    </Link>
-                  </Button>
+                  <Link
+                    href={item.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    GitHub
+                  </Link>
                 )}
                 {item.site && (
-                  <Button asChild size="sm">
-                    <Link href={item.site} target="_blank" rel="noopener noreferrer">
-                      Visit Site
-                    </Link>
-                  </Button>
+                  <Link
+                    href={item.site}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Live Site
+                  </Link>
                 )}
-              </CardFooter>
+              </div>
             )}
-          </Card>
-        </motion.div>
+          </div>
+        </motion.article>
       ))}
     </motion.div>
   );
