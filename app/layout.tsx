@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
@@ -158,6 +159,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
